@@ -9,3 +9,6 @@ Eureka Discovery Server:
 
 Customer Service :
 - port 8090
+
+Product Service :
+- port 8050
