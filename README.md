@@ -6,3 +6,6 @@ Config-Server :
 
 Eureka Discovery Server:
 - port 8761
+
+Customer Service :
+- port 8090
