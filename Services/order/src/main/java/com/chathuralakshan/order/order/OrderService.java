@@ -6,6 +6,8 @@ import com.chathuralakshan.order.kafka.OrderConfirmation;
 import com.chathuralakshan.order.kafka.OrderProducer;
 import com.chathuralakshan.order.orderline.OrderLineRequest;
 import com.chathuralakshan.order.orderline.OrderLineService;
+import com.chathuralakshan.order.payment.PaymentClient;
+import com.chathuralakshan.order.payment.PaymentRequest;
 import com.chathuralakshan.order.product.ProductClient;
 import com.chathuralakshan.order.product.PurchaseRequest;
 import com.chathuralakshan.order.product.PurchaseResponse;
@@ -26,6 +28,7 @@ public class OrderService {
     private final OrderMapper mapper;
     private final OrderProducer orderProducer;
     private final OrderLineService orderLineService;
+    private final PaymentClient paymentClient;
 
     public Integer createOrder(OrderRequest request) {
         //check the customer -->OpenFeign
@@ -50,7 +53,18 @@ public class OrderService {
         }
 
 
-        //todo start payment process
+        // start payment process
+        var paymentRequest=new PaymentRequest(
+                request.amount(),
+                request.paymentMethod(),
+                order.getId(),
+                order.getReference(),
+                customer
+        );
+
+        paymentClient.requestOrderPayment(paymentRequest);
+
+
 
 
         //send order confrmation --> notification microservice (kafka)
