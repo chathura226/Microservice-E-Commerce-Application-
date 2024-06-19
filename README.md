@@ -12,3 +12,9 @@ Customer Service :
 
 Product Service :
 - port 8050
+
+Payment service:
+- port 8060
+
+Order Service:
+- port 8070
