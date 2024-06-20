@@ -18,3 +18,6 @@ Payment service:
 
 Order Service:
 - port 8070
+
+Notification Service
+- port 8040
