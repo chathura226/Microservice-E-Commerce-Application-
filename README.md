@@ -21,3 +21,6 @@ Order Service:
 
 Notification Service
 - port 8040
+
+API gateway
+- port 8222
